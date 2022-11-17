@@ -13,6 +13,8 @@ let randomRange = (min, max) => Math.random() * (max - min) + min;
 let deg2rad = deg => deg * Math.PI / 180;
 let rad2deg = rad => rad * 180 / Math.PI;
 
+let alive = true;
+
 let body = [];
 
 let length = 10;
@@ -108,12 +110,14 @@ let collide = () => {
 
     if (nearest.distance < radius) {
         console.log('collide');
+        alive = false;
         // reload page
         window.location.reload();
     }
 
     if (head.x < 0 || head.x > canvas.width || head.y < 0 || head.y > canvas.height) {
         console.log('collide');
+        alive = false;
         // reload page
         window.location.reload();
     }
@@ -180,7 +184,9 @@ let frame = () => {
     move();
     collide();
     draw();
-    requestAnimationFrame(frame);
+    if (alive) {
+        requestAnimationFrame(frame);
+    }
 }
 
 frame();
