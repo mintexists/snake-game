@@ -13,6 +13,9 @@ let randomRange = (min, max) => Math.random() * (max - min) + min;
 let deg2rad = deg => deg * Math.PI / 180;
 let rad2deg = rad => rad * 180 / Math.PI;
 
+// get ?invincible=true
+let invincible = new URLSearchParams(window.location.search).get('invincible') === 'true';
+
 let alive = true;
 
 let body = [];
@@ -108,14 +111,14 @@ let collide = () => {
         return nearest;
     }, {distance: Infinity, part: null});
 
-    if (nearest.distance < radius) {
+    if (nearest.distance < radius && !invincible) {
         console.log('collide');
         alive = false;
         // reload page
         window.location.reload();
     }
 
-    if (head.x < 0 || head.x > canvas.width || head.y < 0 || head.y > canvas.height) {
+    if ((head.x < 0 || head.x > canvas.width || head.y < 0 || head.y > canvas.height) && !invincible) {
         console.log('collide');
         alive = false;
         // reload page
