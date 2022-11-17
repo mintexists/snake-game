@@ -1,5 +1,5 @@
 import {Mouse, Keyboard} from './mouseHelper.js';
-import {main} from './moduleWrap.js'
+// import {main} from './moduleWrap.js'
 /** @type {HTMLCanvasElement} */
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
@@ -149,7 +149,8 @@ let draw = () => {
     let points = body.map(part => [part.x, part.y]);
     let x = points.map(point => point[0]);
     let y = points.map(point => point[1]);
-    let [xOut, yOut] = main(x, y, interpCount);
+    // let [xOut, yOut] = main(x, y, interpCount);
+    let [xOut, yOut] = [x, y];
     ctx.beginPath();
     for (let i = 0; i < xOut.length; i++) {
         ctx.lineTo(xOut[i], yOut[i]);
