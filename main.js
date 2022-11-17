@@ -161,6 +161,13 @@ let draw = () => {
     ctx.fillStyle = 'black';
     ctx.fill();
 
+    let headLineLength = 20;
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.lineTo(head.x, head.y);
+    ctx.lineTo(head.x + Math.cos(head.angle) * headLineLength, head.y + Math.sin(head.angle) * headLineLength);
+    ctx.stroke();
+
     cherries.forEach(cherry => {
         ctx.beginPath();
         ctx.arc(cherry.x, cherry.y, cherryRadius, 0, Math.PI * 2);
